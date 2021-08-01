@@ -7,4 +7,6 @@ public interface StorageService {
     void updateById(Integer id);
 
     StorageEntity getById(Integer id);
+
+    void deductStorage(Integer id);
 }

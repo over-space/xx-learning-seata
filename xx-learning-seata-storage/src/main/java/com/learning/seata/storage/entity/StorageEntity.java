@@ -1,10 +1,9 @@
 package com.learning.seata.storage.entity;
 
+import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.Table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "t_storage")
@@ -12,6 +11,7 @@ import java.io.Serializable;
 public class StorageEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(length = 64)

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 
-@RestController
 @RequestMapping("/storage")
+@RestController
 public class StorageController implements StorageControllerFeign {
 
     @Autowired
     private StorageService storageService;
+
 
     @GetMapping("/getById")
     public ResponseEntity<StorageEntity> getById(@RequestParam Integer id){
@@ -28,9 +28,7 @@ public class StorageController implements StorageControllerFeign {
     }
 
     @Override
-    public ResponseEntity<String> getStorageNameById(Integer id) {
-        StorageEntity storageEntity = storageService.getById(id);
-        String name = Optional.ofNullable(storageEntity).map(StorageEntity::getName).orElse(null);
-        return new ResponseEntity<>(name, HttpStatus.OK);
+    public void deductStorage(Integer id) {
+        storageService.deductStorage(id);
     }
 }

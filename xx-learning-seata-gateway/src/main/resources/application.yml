@@ -10,27 +10,18 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
         namespace: public
-  main:
-    allow-bean-definition-overriding: true
     gateway:
+      routes:
+        - id: seata-storage
+          uri: lb://seata-storage
+          predicates:
+            - Path=/seata-storage/**
+          filters:
+            - StripPrefix=1
+          order: 1
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
-      gateway:
-        routes:
-          - id: seata-storage
-            uri: lb://seata-storage
-            predicates:
-              - Path=/seata-storage/**
-            filters:
-              - StripPrefix=1
-            order: 1
-
-          - id: seata-user
-            uri: lb://seata-user
-            predicates:
-              - Path=/seata-user/**
-            filters:
-              - StripPrefix=1
-            order: 1
+  main:
+    allow-bean-definition-overriding: true

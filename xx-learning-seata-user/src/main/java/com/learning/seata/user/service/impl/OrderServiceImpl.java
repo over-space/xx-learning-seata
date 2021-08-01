@@ -1,5 +1,6 @@
 package com.learning.seata.user.service.impl;
 
+import com.learning.seata.feign.storage.controller.MessageException;
 import com.learning.seata.user.entity.OrderEntity;
 import com.learning.seata.user.entity.UserEntity;
 import com.learning.seata.user.repository.OrderRepository;
@@ -19,12 +20,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void addOrderByUserId(Integer userId, String storageName) throws Exception {
+    public void addOrderByUserId(Integer userId, String storageName) {
 
         UserEntity userEntity = userRepository.findById(userId).orElse(null);
 
-        if(userEntity == null){
-            throw new Exception("非法用户!");
+        if (userEntity == null) {
+            throw new MessageException("非法用户!");
         }
 
         OrderEntity orderEntity = new OrderEntity();
