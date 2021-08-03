@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "seata-user")
 public interface OrderControllerFeign {
 
-    @GetMapping("/addOrderByUserId")
+    @GetMapping("/order/addOrderByUserId")
     ResponseEntity addOrderByUserId(@RequestParam("userId") Integer userId, @RequestParam("storageName") String storageName);
 }

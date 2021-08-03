@@ -2,9 +2,7 @@ package com.learning.seata.user.entity;
 
 import org.hibernate.annotations.Table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "t_order")
@@ -12,6 +10,7 @@ import java.io.Serializable;
 public class OrderEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private Integer userId;

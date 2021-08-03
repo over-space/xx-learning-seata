@@ -55,7 +55,7 @@ public class StorageServiceImpl implements StorageService {
         if(count <= 0) {
             throw new MessageException("库存不足！");
         }
-        storageEntity.setCount(--count);
+        storageEntity.setCount(count - 1);
         storageRepository.save(storageEntity);
 
         orderControllerFeign.addOrderByUserId(1, storageEntity.getName());
