@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "seata-user")
+@FeignClient(name = "seata-user", primary = false)
 public interface OrderControllerFeign {
 
     @GetMapping("/order/addOrderByUserId")
