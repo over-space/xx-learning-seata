@@ -1,5 +1,7 @@
 package com.learning.seata.storage.service.impl;
 
+import com.learning.logger.annotation.Logger;
+import com.learning.logger.core.LoggerAspect;
 import com.learning.seata.feign.order.controller.OrderControllerFeign;
 import com.learning.seata.feign.storage.controller.MessageException;
 import com.learning.seata.storage.entity.StorageEntity;
@@ -9,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 public class StorageServiceImpl implements StorageService {
@@ -37,6 +38,7 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
+    @Logger
     public StorageEntity getById(Integer id) {
         return storageRepository.findById(id).orElse(null);
     }
