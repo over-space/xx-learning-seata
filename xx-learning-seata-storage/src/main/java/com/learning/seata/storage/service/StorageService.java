@@ -9,4 +9,8 @@ public interface StorageService {
     StorageEntity getById(Integer id);
 
     void deductStorage(Integer id);
+
+    void updateStorageAndBill();
+
+    void addStorage(Integer id);
 }

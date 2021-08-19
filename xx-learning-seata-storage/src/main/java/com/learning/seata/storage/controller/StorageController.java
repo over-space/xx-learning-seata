@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RequestMapping("/storage")
 @RestController
 public class StorageController implements StorageControllerFeign {
 
@@ -21,14 +20,24 @@ public class StorageController implements StorageControllerFeign {
     private StorageService storageService;
 
 
-    @GetMapping("/getById")
+    @GetMapping("/storage/getById")
     public ResponseEntity<StorageEntity> getById(@RequestParam Integer id){
         StorageEntity storageEntity = storageService.getById(id);
         return new ResponseEntity<>(storageEntity, HttpStatus.OK);
     }
 
     @Override
+    public void updateStorageAndBill(){
+        storageService.updateStorageAndBill();
+    }
+
+    @Override
     public void deductStorage(Integer id) {
         storageService.deductStorage(id);
+    }
+
+    @Override
+    public void addStorage(Integer id) {
+        storageService.addStorage(id);
     }
 }

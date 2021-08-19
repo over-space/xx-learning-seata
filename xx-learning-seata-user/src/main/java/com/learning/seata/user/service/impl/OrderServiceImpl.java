@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -32,5 +34,11 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setUserId(userId);
         orderEntity.setStorageName(storageName);
         orderRepository.save(orderEntity);
+
+        // try {
+        //     TimeUnit.SECONDS.sleep(30);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
     }
 }

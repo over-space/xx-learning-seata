@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Primary
 @Component
-@ConditionalOnProperty(name = "feign.dev.mode", matchIfMissing = true)
+@ConditionalOnProperty(name = "feign.dev.mode", havingValue = "true")
 public class OrderControllerFeignMock implements OrderControllerFeign {
 
     @Override
